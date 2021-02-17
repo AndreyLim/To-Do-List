@@ -21,6 +21,11 @@ const render = function(){
     '<button class="todo-complete"></button>' + 
     '</div>';
 
+    const deleteButton = li.querySelector('.todo-remove');
+    deleteButton .addEventListener('click', function () {
+      li.remove();
+    });
+
     if (item.completed) {
       todoCompleted.append(li);
     } else {
@@ -35,36 +40,27 @@ const render = function(){
   });
 };
 
-  todoControl.addEventListener('submit', function(event){
-  event.preventDefault();
 
-  const newTodo = {
+todoControl.addEventListener('submit', function(event){
+   event.preventDefault();
+  
+
+  if (headerInput.value !== '') {
+    
+     const newTodo = {
     value: headerInput.value,
     completed: false
   };
 
   todoData.push(newTodo);
+  headerInput.value = '';
   render();
-});
-
-render();
-
-const todoRemove = document.querySelector(".todo-container").addEventListener("click",function(e) {
-  if (e.target && e.target.matches(".todo-remove")) {
-    let li = document.querySelector('.todo-item');
-    li.parentNode.removeChild(li);
-    
-	}
-});
+  }
+  
+  });
 
 
 
-// const todoRemove = document.querySelector('.todo-container');
-//   todoRemove.addEventListener('click', function(event) {
-//     let target = event.target;
-//     if (target.className === 'todo-remove') {
-//       target.remove();
-//     }
-    
-//   });
+
+
 
