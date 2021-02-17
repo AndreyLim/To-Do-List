@@ -48,6 +48,7 @@ const render = function(){
 };
 
 todoData = JSON.parse(localStorage.getItem('data'));
+render();
 
 todoControl.addEventListener('submit', function(event){
    event.preventDefault();
