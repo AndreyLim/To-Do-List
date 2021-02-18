@@ -42,12 +42,13 @@ const render = function(){
     const btnTodoComplete = li.querySelector('.todo-complete');
     btnTodoComplete.addEventListener('click', function(){
       item.completed = !item.completed;
+      localStorage.setItem('data', JSON.stringify(todoData));
       render();
     });
   });
 };
 
-todoData = JSON.parse(localStorage.getItem('data'));
+todoData = JSON.parse(localStorage.getItem('data')) || [];
 render();
 
 todoControl.addEventListener('submit', function(event){
@@ -62,8 +63,8 @@ todoControl.addEventListener('submit', function(event){
   };
 
   todoData.push(newTodo);
-  headerInput.value = '';
   localStorage.setItem('data', JSON.stringify(todoData));
+  headerInput.value = '';
   render();
   }
 
